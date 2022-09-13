@@ -10,6 +10,141 @@
     <h1>Medical Institution</h1>
     <script>
 
+        class Person {
+            name;
+            surname;
+
+            constructor(name, surname) {
+                this.name = name;
+                this.surname = surname;
+            }
+        }
+
+        class Doctor extends Person {
+            specialization;
+
+            constructor(name, surname, specialization) {
+                super(name, surname);
+                this.specialization = specialization;
+                
+            }
+
+            makeAnAppointment(examination) {
+                console.log(`Appointment made for ${examination.type} for patient ${examination.patient} by doctor ${this.name}`)
+            }
+        }
+
+        class Patient extends Person {
+            jmbg;
+            numberOfHealthCard;
+            doctor;
+
+            constructor(name, surname, jmbg, numberOfHealthCard, doctor) {
+                super(name,surname);
+                this.jmbg = jmbg;
+                this.numberOfHealthCard = numberOfHealthCard;
+                this.doctor = doctor;
+            }
+
+            chooseDoctor(doctor1) {
+                this.doctor = doctor1;
+            }
+
+        }
+
+        class Examination {
+            date;
+            time;
+            patient;
+            type;
+
+            constructor(date, time, patient, type)
+            {
+                this.date = date;
+                this.time = time;
+                this.patient = patient;
+                this.type = type;
+            }
+
+            doExamination() {
+                throw new Error('You have to implement the method doExamination!');
+            }
+
+        }
+
+        class BloodPressure extends Examination{
+            upperValue;
+            lowerValue;
+            pulse;
+
+            constructor(date, time, patient, type, upperValue, lowerValue, pulse) {
+                super(date, time, patient, 'blood pressure');
+                this.upperValue = upperValue;
+                this.lowerValue = lowerValue;
+                this.pulse = pulse;
+            }
+
+            doExamination() {
+                console.log(`Do a blood pressure examination for patient ${this.patient}`);
+                this.upperValue = 13;
+                this.lowerValue = 5;
+                this.pulse = '120/90';
+                console.log(`Results of examination for blood pressure - upper value: ${this.upperValue}, lower value: ${this.lowerValue}, pulse: ${this.pulse}`);
+            }
+        }
+
+        class LevelOfSugarInBlood extends Examination {
+            value;
+            timeOfLastMeal;
+
+            constructor(date, time, patient, type, value, timeOfLastMeal) {
+                super(date, time, patient, 'level of suger in blood');
+                this.value = value;
+                this.timeOfLastMeal = timeOfLastMeal;
+            }
+
+            doExamination() {
+                console.log(`Do a level of sugar examination for patient ${this.patient}`);
+                this.value = 15;
+                this.timeOfLastMeal = '8:50';
+                console.log(`Results of examination for level of suger in blood - value: ${this.value}, time of the last meal: ${this.timeOfLastMeal}`);
+            }
+        }
+
+        class LevelOfHolesterolInBlood extends Examination {
+            value;
+            timeOfLastMeal;
+
+            constructor(date, time, patient, type, value, timeOfLastMeal) {
+                super(date, time, patient, 'level of holesterol in blood')
+                this.value = value;
+                this.timeOfLastMeal = timeOfLastMeal;
+            }
+
+            doExamination() {
+                console.log(`Do a level of holesterol in blood examination for patient ${this.patient}`);
+                this.value = 4;
+                this.timeOfLastMeal = '9:00';
+                console.log(`Results of examination for level of suger in blood - value: ${this.value}, time of the last meal: ${this.timeOfLastMeal}`);
+            }
+        }
+
+        const doctor1 = new Doctor('Milan', 'Miljkovic', 'cardiologist');
+        const patient1 = new Patient('Dragan', 'Jovic', '1234234', '0002344');
+        patient1.chooseDoctor(doctor1.name);
+        console.log(doctor1, patient1);
+
+        examination1 = new LevelOfSugarInBlood('21-09-2022', '10:00', patient1.name, '', '4', '9:00');
+        doctor1.makeAnAppointment(examination1)
+        examination2 = new BloodPressure('05-10-2022', '18:00', patient1.name, '', '10', '3', '120/80')
+        doctor1.makeAnAppointment(examination2);
+        console.log(examination1, examination2);
+
+        examination1.doExamination();
+        examination2.doExamination();
+        
+
+
     </script>
 </body>
 </html>
