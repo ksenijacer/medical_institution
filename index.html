@@ -12,9 +12,9 @@
         
         // function newFunc() {
         //     for (var i = 0; i < 10; i++) {
-        //     console.log(i);
         //     }
         // }
+        // console.log(i);
 
         // newFunc();
 
@@ -52,10 +52,8 @@
 
         // let array = [1,2,3,4,5];
 
-        // let square = function (x) {
-        //     return x*x;
-        // }
-        // let arrSquare = array.map(square);
+        // let arrSquare = array.map(function (x) {
+        //     return x*x);
 
         // console.log(arrSquare);
 
@@ -117,21 +115,22 @@
 
 
 
-        // var myZoo = [
-        //     ["King Kong", ["gorilla", 42]], 
-        //     ["Nemo", ["fish", 5]],
-        //     ["Punxsutawney Phil", ["groundhog", 11]]
-        // ];
+        let myZoo = [
+            ["King Kong", ["gorilla", 42]], 
+            ["Nemo", ["fish", 5]],
+            ["Punxsutawney Phil", ["groundhog", 11]]
+        ];
 
-        // function zooInventory(myZoo) {
-        //     for(let i = 0; i < myZoo.length; i++)
-        //     var innerArrayLength = myZoo[i].length
-        //     for (let x = 0; x < innerArrayLength; x++)
-        //     var smallestArrayLength = innerArrayLength[x].length
-
-        //     console.log( i + 'the' + j + 'is' )
-        // }
-
+        function zooInventory(myZoo) {
+            for(let i = 0; i < myZoo.length; i++) {
+              const animals = myZoo[i];
+              const name = animals[1,0];
+              const species = animals[1][0];
+              const age = animals[1][1];
+              console.log(name + ' the ' + species + ' is ' + age);
+            }
+        }
+        zooInventory(myZoo);
 
         // JS/JSON objects 
 
@@ -204,55 +203,55 @@
     
         // JS PROTOTYPES AND CLASSES
 
-        class Character {
-            static count = 0;
+        // class Character {
+        //     static count = 0;
 
-            constructor() {
-            if(this.constructor === Character) {
-                throw new Error ('This character can not be instantiated');
-                }
-            Character.count++;
-            this.x = Math.floor(Math.random()* 10) + 1;
-            this.y = Math.floor(Math.random()* 10) + 1;
-            }
+        //     constructor() {
+        //     if(this.constructor === Character) {
+        //         throw new Error ('This character can not be instantiated');
+        //         }
+        //     Character.count++;
+        //     this.x = Math.floor(Math.random()* 10) + 1;
+        //     this.y = Math.floor(Math.random()* 10) + 1;
+        //     }
 
-            get position() {
-                return `${this.x}x${this.y}`
-            }
+        //     get position() {
+        //         return `${this.x}x${this.y}`
+        //     }
 
 
-            set position(coordinates) {
-                if(coordinates[0] > 10 || coordinates[1] > 10) {
-                    throw new Error('Out of 10x10')
-                }
-                else {
-                    this.x = coordinates[0];
-                    this.y = coordinates[1];
-                }
-            }
+        //     set position(coordinates) {
+        //         if(coordinates[0] > 10 || coordinates[1] > 10) {
+        //             throw new Error('Out of 10x10')
+        //         }
+        //         else {
+        //             this.x = coordinates[0];
+        //             this.y = coordinates[1];
+        //         }
+        //     }
             
-        }
+        // }
 
-        class PlayerCharacter extends Character{
-            constructor() {
-                super();
-            }
-        }
+        // class PlayerCharacter extends Character{
+        //     constructor() {
+        //         super();
+        //     }
+        // }
 
-        class NonPlayerCharacter extends Character {
-            constructor() {
-                super();
-            }
-        }
+        // class NonPlayerCharacter extends Character {
+        //     constructor() {
+        //         super();
+        //     }
+        // }
 
-        const player1 = new PlayerCharacter();
-        const player2 = new PlayerCharacter();
-        const player3 = new NonPlayerCharacter();
+        // const player1 = new PlayerCharacter();
+        // const player2 = new PlayerCharacter();
+        // const player3 = new NonPlayerCharacter();
 
-        console.log(player1, player2, player3);
-        console.log(Character.count);
-        console.log(player1.position);
-        console.log(player3.position);
+        // console.log(player1, player2, player3);
+        // console.log(Character.count);
+        // console.log(player1.position);
+        // console.log(player3.position);
 
 
 

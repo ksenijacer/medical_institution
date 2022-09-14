@@ -25,8 +25,7 @@
 
             constructor(name, surname, specialization) {
                 super(name, surname);
-                this.specialization = specialization;
-                
+                this.specialization = specialization;   
             }
 
             makeAnAppointment(examination) {
@@ -39,7 +38,8 @@
             numberOfHealthCard;
             doctor;
 
-            constructor(name, surname, jmbg, numberOfHealthCard, doctor) {
+            constructor(patientArg) {
+                const {name, surname, jmbg, numberOfHealthCard, doctor} = patientArg;
                 super(name,surname);
                 this.jmbg = jmbg;
                 this.numberOfHealthCard = numberOfHealthCard;
@@ -58,8 +58,7 @@
             patient;
             type;
 
-            constructor(date, time, patient, type)
-            {
+            constructor(date, time, patient, type) {
                 this.date = date;
                 this.time = time;
                 this.patient = patient;
@@ -77,7 +76,8 @@
             lowerValue;
             pulse;
 
-            constructor(date, time, patient, type, upperValue, lowerValue, pulse) {
+            constructor(bloodArg) {
+                const {date, time, patient, type, upperValue, lowerValue, pulse} = bloodArg;
                 super(date, time, patient, 'blood pressure');
                 this.upperValue = upperValue;
                 this.lowerValue = lowerValue;
@@ -97,7 +97,8 @@
             value;
             timeOfLastMeal;
 
-            constructor(date, time, patient, type, value, timeOfLastMeal) {
+            constructor(sugarArg) {
+                const {date, time, patient, type, value, timeOfLastMeal} = sugarArg;
                 super(date, time, patient, 'level of suger in blood');
                 this.value = value;
                 this.timeOfLastMeal = timeOfLastMeal;
@@ -115,7 +116,8 @@
             value;
             timeOfLastMeal;
 
-            constructor(date, time, patient, type, value, timeOfLastMeal) {
+            constructor(argsHolesterol) {
+                const { date, time, patient, type, value, timeOfLastMeal } = argsHolesterol;
                 super(date, time, patient, 'level of holesterol in blood')
                 this.value = value;
                 this.timeOfLastMeal = timeOfLastMeal;
@@ -130,13 +132,13 @@
         }
 
         const doctor1 = new Doctor('Milan', 'Miljkovic', 'cardiologist');
-        const patient1 = new Patient('Dragan', 'Jovic', '1234234', '0002344');
+        const patient1 = new Patient({name: 'Dragan', surname: 'Jovic', jmbg: '1234234', numberOfHealthCard: '0002344'});
         patient1.chooseDoctor(doctor1.name);
         console.log(doctor1, patient1);
 
-        examination1 = new LevelOfSugarInBlood('21-09-2022', '10:00', patient1.name, '', '4', '9:00');
+        examination1 = new LevelOfSugarInBlood({date: new Date(), time: '10:00',  patient: patient1.name, type: '', value: '4', timeOfLastMeal:'9:00'});
         doctor1.makeAnAppointment(examination1)
-        examination2 = new BloodPressure('05-10-2022', '18:00', patient1.name, '', '10', '3', '120/80')
+        examination2 = new BloodPressure({date: new Date(), time: '18:00',  patient: patient1.name, type: '', upperValue: '4', lowerValue:'3', pulse: '120/80'});
         doctor1.makeAnAppointment(examination2);
         console.log(examination1, examination2);
 
